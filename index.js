@@ -210,7 +210,7 @@ class RTTEX {
     }
 }
 //Path Config
-const darknetPath = "./newconfig";
+const darknetPath = "./configv2";
 
 const cfgFile = path.resolve(darknetPath, "custom-yolov4-tiny-detector.cfg");
 const weightsFile = path.resolve(darknetPath, "custom-yolov4-tiny-detector_best.weights");
@@ -319,42 +319,136 @@ async function ProcessImage(bufferimage){
             
             widthimgpos = rect.width;
             heightimgpos = rect.height;
+            textz = labels[classIDs[i]];
 
-          if(rect.width >= 90 && rect.height >= 90){
-                whatSize = "WOW BIGGG";
-                calculat = parseFloat(solvedx)/573;
-            }else if(rect.width >= 85 && rect.height >= 85){
-                whatSize = "VERY BIG";
-                calculat = parseFloat(solvedx)/568;
-            }else if(rect.width >= 80 && rect.height >= 80){
-                whatSize = "Little Big";
-                calculat = parseFloat(solvedx)/585;
-            }else if(rect.width >= 75 && rect.height >= 75){
-                whatSize = "Big";
-                calculat = parseFloat(solvedx)/569;
-            }else if(rect.width >= 65 && rect.height >= 65){
-                whatSize = "Almost Big";
-                calculat = (parseFloat(solvedx))/570;
-            }else if(rect.width >= 55 && rect.height >= 55){
-                whatSize = "Large";
-                calculat = (parseFloat(solvedx))/596;
-            }else if(rect.width >= 45 && rect.height >= 45){
-                whatSize = "Medium";
-                calculat = (parseFloat(solvedx)+24)/575;
-            }else{
-                whatSize = "Small";
-                calculat = (parseFloat(solvedx))/585;
+        //   if(rect.width >= 90 && rect.height >= 90){
+        //         whatSize = "WOW BIGGG";
+        //         calculat = parseFloat(solvedx)/573;
+        //     }else if(rect.width >= 85 && rect.height >= 85){
+        //         whatSize = "VERY BIG";
+        //         calculat = parseFloat(solvedx)/568;
+        //     }else if(rect.width >= 80 && rect.height >= 80){
+        //         whatSize = "Little Big";
+        //         calculat = parseFloat(solvedx)/585;
+        //     }else if(rect.width >= 75 && rect.height >= 75){
+        //         whatSize = "Big";
+        //         calculat = parseFloat(solvedx)/569;
+        //     }else if(rect.width >= 65 && rect.height >= 65){
+        //         whatSize = "Almost Big";
+        //         calculat = (parseFloat(solvedx))/570;
+        //     }else if(rect.width >= 55 && rect.height >= 55){
+        //         whatSize = "Large";
+        //         calculat = (parseFloat(solvedx))/596;
+        //     }else if(rect.width >= 45 && rect.height >= 45){
+        //         whatSize = "Medium";
+        //         calculat = (parseFloat(solvedx)+24)/575;
+        //     }else{
+        //         whatSize = "Small";
+        //         calculat = (parseFloat(solvedx))/585;
+        //     }
+            //New Shit Filltering
+            if(rect.width <= 45 && rect.height <= 45 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Smallest";
+                calculat = (parseFloat(solvedx)+11)/575;
+            }else if (rect.width <= 50  && rect.height <= 50 && textz == "puzzel_v2") {
+                whatSize = "Puzzel V2 Small";
+                calculat = (parseFloat(solvedx)-10)/575;
+            }else if(rect.width <= 67 && rect.height <= 67 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Near Big";
+                calculat = (parseFloat(solvedx)-12)/555;
+            }else if(rect.width <= 77 && rect.height <= 77 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Almost Big";
+                calculat = (parseFloat(solvedx)-5)/555;
+            }else if(rect.width <= 80 && rect.height <= 80 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Little Big";
+                calculat = (parseFloat(solvedx)-19)/555;
+            }else if(rect.width <= 85 && rect.height <= 85 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Big";
+                calculat = (parseFloat(solvedx)-24)/555;
+            }else if(rect.width <= 100 && rect.height <= 100 && textz == "puzzel_v2"){
+                whatSize = "Puzzel V2 Biggest";
+                calculat = (parseFloat(solvedx)-35)/555;
+            }else if(rect.width <= 45 && rect.height <= 45 && textz == "puzzel"){
+                whatSize = "Puzzel Smallest";
+                calculat = (parseFloat(solvedx)-1)/555;
+            }else if(rect.width <= 50 && rect.height <= 50 && textz == "puzzel"){
+                whatSize = "Puzzel Small";
+                calculat = (parseFloat(solvedx)-16)/555;
+            }else if(rect.width <= 67 && rect.height <= 67 && textz == "puzzel"){
+                whatSize = "Puzzel Little Medium";
+                calculat = (parseFloat(solvedx)-12)/555;
+            }else if(rect.width <= 75 && rect.height <= 75 && textz == "puzzel"){
+                whatSize = "Puzzel Medium";
+                calculat = (parseFloat(solvedx)-22)/555;
+            }else if(rect.width <= 88 && rect.height <= 88 && textz == "puzzel"){
+                whatSize = "Puzzel Little Big";
+                calculat = (parseFloat(solvedx)-10)/555;
+            }else if(rect.width <= 90 && rect.height <= 90 && textz == "puzzel"){
+                whatSize = "Puzzel Big";
+                calculat = (parseFloat(solvedx)-36)/555;
+            }else if(rect.width <= 45 && rect.height <= 45 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Smallest";
+                calculat = (parseFloat(solvedx)+11)/555;
+            }else if(rect.width <= 56 && rect.height <= 56 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Near Small";
+                calculat = (parseFloat(solvedx)+2)/555;
+            }else if(rect.width <= 58 && rect.height <= 58 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Small";
+                calculat = (parseFloat(solvedx)-9)/555;
+            }else if(rect.width <= 69 && rect.height <= 69 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Little Medium";
+                calculat = (parseFloat(solvedx)-19)/555;
+            }else if(rect.width <= 75 && rect.height <= 75 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Medium";
+                calculat = (parseFloat(solvedx)-17)/555;
+            }else if(rect.width <= 100 && rect.height <= 100 && textz == "puzzel_2side"){
+                whatSize = "puzzel_2side Biggest";
+                calculat = (parseFloat(solvedx)-38)/555;
+            }else if(rect.width <= 47 && rect.height <= 47 && textz == "puzzel_round"){
+                whatSize = "Puzzel Round Smallest";
+                calculat = (parseFloat(solvedx)-5)/555;
+            }else if(rect.width <= 56 && rect.height <= 56 && textz == "puzzel_round"){
+                whatSize = "Puzzel Round Small";
+                calculat = (parseFloat(solvedx)+6)/555;
+            }else if(rect.width <= 80 && rect.height <= 80 && textz == "puzzel_round"){
+                whatSize = "Puzzel Round Big";
+                calculat = (parseFloat(solvedx)-24)/555;
+            }else if(rect.width <= 95 && rect.height <= 95 && textz == "puzzel_round"){
+                whatSize = "Puzzel Round Little Big";
+                calculat = (parseFloat(solvedx)-12)/555;
+            }else if(rect.width <= 105 && rect.height <= 105 && textz == "puzzel_round"){
+                whatSize = "Puzzel Round Biggest";
+                calculat = (parseFloat(solvedx)-24)/555;
+            }else if(rect.width <= 50 && rect.height <= 50 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Small";
+                calculat = (parseFloat(solvedx)-8)/555;
+            }else if(rect.width <= 65 && rect.height <= 65 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Little Medium";
+                calculat = (parseFloat(solvedx)-11)/555;
+            }else if(rect.width <= 78 && rect.height <= 78 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Medium";
+                calculat = (parseFloat(solvedx)-13)/555;
+            }else if(rect.width <= 83 && rect.height <= 83 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Big";
+                calculat = (parseFloat(solvedx)-28)/555;
+            }else if(rect.width <= 85 && rect.height <= 85 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Little Big";
+                calculat = (parseFloat(solvedx)-21)/555;
+            }else if(rect.width <= 100 && rect.height <= 100 && textz == "puzzel_star"){
+                whatSize = "Puzzel Star Bigest";
+                calculat = (parseFloat(solvedx)-15)/555;
             }
-
-            if (rect.width >= 100 && rect.height >= 100 && solvedx >= 450) {
+            
+            if (rect.width >= 99 && rect.height >= 99 && solvedx >= 450) {
                 whatSize = "FORCED RIGHT";
                 calculat = 0.821875;
             }
+
           });
         }
       });
 });
-console.log(whatSize , widthimgpos , heightimgpos , solvedx);
+console.log(whatSize , widthimgpos , heightimgpos , solvedx,textz);
 console.log(calculat);
 //cv.imshow("wpw",img);
 //cv.waitKey();
@@ -408,7 +502,7 @@ app.get('/', async (req, res)=> {
         let jawaban = await ProcessImage(`./${req.query.puzzeluid}.png`);
         
         hook.send(`captcha_answer|${jawaban}|CaptchaID|${req.query.puzzelid}`);
-        res.send(`captcha_answer|${jawaban}|CaptchaID|${req.query.puzzelid}`);
+        //res.send(`captcha_answer|${jawaban}|CaptchaID|${req.query.puzzelid}`);
     })
     .catch(ex => {
         console.log(`${ex}`);
@@ -416,11 +510,11 @@ app.get('/', async (req, res)=> {
         hook.send(`captcha_answer|failed|CaptchaID|${req.query.puzzelid}`);
     });
     console.timeEnd("Start_Query");
-    try {
-         fs.unlinkSync(`./${req.query.puzzeluid}.png`)
-       } catch(err) {
-         console.error(err)
-       }
+    // try {
+    //      fs.unlinkSync(`./${req.query.puzzeluid}.png`)
+    //    } catch(err) {
+    //      console.error(err)
+    //    }
 });
 //console.log(req.query.puzzelid);
 //res.send(`captcha_answer|${123123123}|CaptchaID|${req.query.puzzelid}`);
